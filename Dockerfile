@@ -7,5 +7,3 @@ COPY ./srcs/config.sh /
 COPY ./srcs/nginx_conf / 
 COPY ./srcs/phpMyAdmin_conf / 
 COPY ./srcs/wp_config.php / 
-
-CMD bash config.sh

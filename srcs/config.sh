@@ -6,12 +6,15 @@ echo "<?php phpinfo(); ?>" >> /var/www/site/index.php
 
 # SSL setup
 mkdir /etc/nginx/ssl
-openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/nginx/ssl/site.crt -keyout /etc/nginx/ssl/site.key -subj "/C=FR/ST=Paris/L=Paris/O=42 School/OU=jpeyron/CN=site"
+openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/nginx/ssl/site.pem -keyout /etc/nginx/ssl/site.key -subj "/C=FR/ST=Paris/L=Paris/O=42 School/OU=jpeyron/CN=site"
 
 # nginx setup
 mv nginx_conf /etc/nginx/sites-available/site
 ln -s /etc/nginx/sites-available/site /etc/nginx/sites-enabled/site
 rm -rf /etc/nginx/sites-enabled/default
+
+chown -R www-data /var/www/*
+chmod -R 755 /var/www/*
 
 # Database setup
 service mysql start
