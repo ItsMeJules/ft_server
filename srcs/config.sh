@@ -19,14 +19,15 @@ service mysql start
 echo "CREATE DATABASE wordpress;" | mysql -u root
 echo "GRANT ALL ON wordpress.* TO 'root'@'localhost';" | mysql -u root
 echo "FLUSH PRIVILEGES;" | mysql -u root
+echo "update mysql.user set plugin='' where user='root';"| mysql -u root
 
 # phpMyAdmin
-mv phpMyAdmin-5.0.4-all-languages /var/www/site/phpMyAdmin
+mv phpMyAdmin-5.0.4-english /var/www/site/phpMyAdmin
 mv phpMyAdmin_conf /var/www/site/phpMyAdmin/config.inc.php
 
 # WordPress setup
 mv wordpress/ /var/www/site
-mv wp_config.php /var/www/site/wordpress
+mv wp-config.php /var/www/site/wordpress
 
 rm -rf *tar.gz
 
